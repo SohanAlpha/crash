@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3rd Sem English Poem Crash Course by Sohan Paul</title>
+  <meta name="description" content="Two quick 3D glowing cards linking to crash courses on Our Casuarina Tree and Ulysses by Sohan Paul." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-start:#0b0f1a;
+      --bg-end:#0e1630;
+      --text:#e8ecff;
+      --muted:#9aa5d1;
+      --accent1:#6ee7ff;
+      --accent2:#a78bfa;
+      --accent3:#22d3ee;
+      --card:#0f172a;
+      --card-border:rgba(255,255,255,0.08);
+      --glow: 0 0 25px rgba(102, 204, 255, .55), 0 0 55px rgba(167, 139, 250, .35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 80% 0%, rgba(102, 204, 255, .12), transparent 60%),
+                  radial-gradient(900px 900px at 20% 100%, rgba(167, 139, 250, .10), transparent 60%),
+                  linear-gradient(160deg, var(--bg-start), var(--bg-end));
+      overflow-x:hidden;
+    }
+
+    .noise{position:fixed; inset:0; pointer-events:none; opacity:.04; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="1"/></svg>'); mix-blend-mode:overlay;}
+
+    .container{
+      max-width:1100px; margin:0 auto; padding:64px 20px 96px; position:relative;
+    }
+
+    header{ text-align:center; margin-bottom:36px; }
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(26px, 4vw, 48px);
+      font-weight:800;
+      letter-spacing:0.5px;
+      line-height:1.1;
+      text-shadow:0 2px 16px rgba(102, 204, 255, .25);
+    }
+    .sub{ color:var(--muted); font-size:clamp(14px, 1.6vw, 18px); }
+
+    .grid{
+      display:grid; gap:28px; grid-template-columns:repeat(2, minmax(0, 1fr));
+      perspective:1000px;
+    }
+    @media (max-width:780px){ .grid{ grid-template-columns:1fr; } }
+
+    .card-link{ text-decoration:none; color:inherit; display:block; }
+
+    .card{
+      position:relative; border-radius:22px; background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border:1px solid var(--card-border);
+      padding:28px; overflow:hidden; isolation:isolate; min-height:160px;
+      transform-style:preserve-3d; will-change:transform, box-shadow, filter;
+      transition: transform .25s ease, box-shadow .25s ease, filter .25s ease, border-color .25s ease;
+    }
+
+    .card::before{
+      content:""; position:absolute; inset:-2px; border-radius:24px; padding:2px; background:
+        linear-gradient(135deg, rgba(110,231,255,.75), rgba(167,139,250,.65));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude; opacity:0; transition:opacity .25s ease;
+    }
+
+    .card::after{
+      content:""; position:absolute; inset:-30% -10%; background:
+        radial-gradient(300px 140px at var(--mx,50%) var(--my,50%), rgba(110,231,255,.22), transparent 60%),
+        radial-gradient(260px 120px at calc(var(--mx,50%) - 10%) calc(var(--my,50%) - 10%), rgba(167,139,250,.18), transparent 60%);
+      filter: blur(35px); opacity:.65; z-index:-1; transition: opacity .25s ease; pointer-events:none;
+    }
+
+    .card:hover{ box-shadow: var(--glow); border-color: rgba(255,255,255,0.16); }
+    .card:hover::before{ opacity:1; }
+
+    .tag{
+      display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.6px; text-transform:uppercase; color:#cbd8ff; background:rgba(255,255,255,0.06); border:1px solid var(--card-border);
+      padding:8px 12px; border-radius:999px; backdrop-filter: blur(6px);
+    }
+
+    .title{ margin:14px 0 8px; font-size:clamp(18px, 2.2vw, 26px); font-weight:700; }
+
+    .desc{ margin:0; color:var(--muted); font-size:clamp(13px, 1.6vw, 16px); }
+
+    .shine{ position:absolute; inset:0; background: radial-gradient(120px 160px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.25), transparent 60%); opacity:.0; transition:opacity .25s ease; mix-blend-mode:soft-light; }
+    .card:hover .shine{ opacity:.45; }
+
+    /* Subtle floating animation */
+    .floaty{ animation: float 6s ease-in-out infinite; }
+    @keyframes float{ 0%,100%{ transform: translateY(0) } 50%{ transform: translateY(-6px) } }
+
+    footer{ text-align:center; color:var(--muted); margin-top:42px; font-size:13px; }
+    .credits a{ color: var(--accent1); text-decoration: none; border-bottom:1px dashed rgba(110,231,255,.4); }
+    .credits a:hover{ border-bottom-color: rgba(110,231,255,.8); }
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="container">
+    <header class="floaty">
+      <h1>3rd Sem English Poem Crash Course by Sohan Paul</h1>
+      <div class="sub">Quick 3D cards • Neon glow • Super clean</div>
+    </header>
+
+    <section class="grid" id="cards">
+      <!-- Card 1: Our Casuarina Tree -->
+      <a class="card-link" href="https://casuriacrash.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Our Casuarina Tree Crash Course (opens in new tab)">
+        <article class="card" data-tilt>
+          <span class="tag">Crash Course</span>
+          <h2 class="title">Our Casuarina Tree — Crash Course</h2>
+          <p class="desc">Condensed notes, key lines, context & quick revision.</p>
+          <div class="shine" aria-hidden="true"></div>
+        </article>
+      </a>
+
+      <!-- Card 2: Ulysses -->
+      <a class="card-link" href="https://ulyssescrash.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Ulysses Crash Course (opens in new tab)">
+        <article class="card" data-tilt>
+          <span class="tag">Crash Course</span>
+          <h2 class="title">Ulysses — Crash Course</h2>
+          <p class="desc">Themes, structure, famous quotes & smart summaries.</p>
+          <div class="shine" aria-hidden="true"></div>
+        </article>
+      </a>
+    </section>
+
+    <footer>
+      <div class="credits">Crafted with ❤ for quick learning.</div>
+    </footer>
+  </main>
+
+  <script>
+    // Simple 3D tilt & glow follower
+    const setTilt = (card, x, y) => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = x - cx;
+      const dy = y - cy;
+      const rx = ( +15 * dy) / (rect.height / 2);
+      const ry = ( -15 * dx) / (rect.width / 2);
+      card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      const mx = ((x - rect.left) / rect.width) * 100;
+      const my = ((y - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mx', mx + '%');
+      card.style.setProperty('--my', my + '%');
+    };
+
+    const resetTilt = (card) => {
+      card.style.transform = 'rotateX(0) rotateY(0)';
+    };
+
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      card.addEventListener('mousemove', (e) => setTilt(card, e.clientX, e.clientY));
+      card.addEventListener('mouseleave', () => resetTilt(card));
+      card.addEventListener('mouseenter', (e) => setTilt(card, e.clientX, e.clientY));
+      // Touch support (basic)
+      card.addEventListener('touchmove', (e) => {
+        const t = e.touches[0]; if (!t) return; setTilt(card, t.clientX, t.clientY);
+      }, {passive:true});
+      card.addEventListener('touchend', () => resetTilt(card));
+    });
+  </script>
+</body>
+</html>
